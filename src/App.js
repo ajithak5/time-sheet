@@ -117,7 +117,7 @@ function App() {
     createData('Sun, 07/02', '09:00 AM - 05:00 PM', '09:45AM', '1hr 15 mins', '04.45 PM', '--', '7:40', '7:40', '--', '--', '--'),
     createData('Sat, 07/01', '09:00 AM - 05:00 PM', '07:10AM', '0:00', '10.30 AM', '--', '3:20', "", 'View', 'Came in for event prep'),
     createData('Fri, 06/30', '09:00 AM - 05:00 PM', '06:20AM', '55 mins', '03.20 AM', '1:00'),
-    createData('Thu, 06/29', '--', '09:00 AM', '--', '--', '--', '--', '5:20', '5:20', '--', '--', '--'),
+    createData('Thu, 06/29', '07:00 AM - 02:00 PM', '09:00 AM', '--', '--', '--', '5:20', '5:20', '--', '--', '--'),
     createData('Wed, 06/28', 'Unavailable(4h)', '--', '--', '--'),
     createData('Tue, 06/27', '--', '--', '--', '--', '--', '0:00', '0:00', '--', '--', '--'),
     createData('Mon, 06/26', '--', '--', '--', '--', '--', '0:00', '0:00', '--', '--', '--'),
@@ -289,7 +289,7 @@ function App() {
               
                 <TableCell className='input'>
                
-                <TextField value={ !!editedData && editedData?.index === index  ? editedData.value : row.clockIn}  
+                {/* <TextField value={ !!editedData && editedData?.index === index  ? editedData.value : row.clockIn}  
                 onChange={(e)=>{ 
                   //EditInput(row,index)
                   setEditIndex(index);
@@ -300,18 +300,9 @@ function App() {
                   })
 
                 }}
-                // onBlur={(e)=>{
-                //   console.log("e:: ",e)
-                //   const { value  } = e.target;
-                //   console.log("rows ::::",row)
-                //   if(value){
-                //     rows[index] = createData(`${row.date}`, `${row.shift}`, ${value}, `${row.breaktime}`, `${row.clockOut}`, '--', '7:40', '7:40', '--', '--', '--')
-                //     setRows(...rows,rows[index].)
-                //   }
-                 
-                //  // console.log(row.clockIn)
-                // }}
-                />
+               
+                /> */}
+                {row.clockIn}
                   
                   
                   </TableCell>
@@ -326,7 +317,7 @@ function App() {
                     </svg></Typography>
                 </TableCell>
                 <TableCell className='input'>
-                <TextField value={ !!editedData && editedData?.index === index  ? editedData.value : row.breaktime}  
+                {/* <TextField value={ !!editedData && editedData?.index === index  ? editedData.value : row.breaktime}  
                 onChange={(e)=>{ 
                   //EditInput(row,index)
                   setEditIndex(index);
@@ -336,10 +327,12 @@ function App() {
                     value:e.target.value
                   })
 
-                }}/>
+                }}/> */}
+                {row.breaktime}
                 
                   </TableCell>
-                <TableCell className='input' ><TextField value={ !!editedData && editedData?.index === index  ? editedData.value : row.clockOut}  
+                <TableCell className='input' >
+                  {/* <TextField value={ !!editedData && editedData?.index === index  ? editedData.value : row.clockOut}  
                 onChange={(e)=>{ 
                   //EditInput(row,index)
                   setEditIndex(index);
@@ -349,10 +342,12 @@ function App() {
                     value:e.target.value
                   })
 
-                }}/></TableCell>
-                <TableCell>{row.overtime}</TableCell>
-                <TableCell>{row.totalhrs}</TableCell>
-                <TableCell>{row.dailytotal}</TableCell>
+                }}/> */}
+                {row.clockOut}
+                </TableCell>
+                <TableCell sx={{...(row.overtime !== '--' && {color:"#EC445A"})}}>{row.overtime}</TableCell>
+                <TableCell sx={{...((row.clockIn !== '--' && row.clockOut === '--' )&& {color:"#FD803A"})}}>{row.totalhrs}</TableCell>
+                <TableCell sx={{...((row.clockIn !== '--' && row.clockOut === '--' )&& {color:"#FD803A"})}}>{row.dailytotal}</TableCell>
                 <TableCell style={{ ...(row.clockIn === '--' && { color: '#007DFF' }) }}>{row.timeedit}</TableCell>
                 <TableCell>{row.empnote}</TableCell>
                 <TableCell>{row.mgrnote}</TableCell>
